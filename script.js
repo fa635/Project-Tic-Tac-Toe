@@ -29,6 +29,7 @@ function playRound () {
     const addToScorePlayer1 = () => player1Score++;
     const addToScorePlayer2 = () => player2Score++;
     
+    let tie
 
 
     if (
@@ -57,10 +58,17 @@ function playRound () {
         ){
         addToScorePlayer2()
     }
+    else if (oneShot.gameBoard[0] !== "" && oneShot.gameBoard[1] !== "" && oneShot.gameBoard[2] !== "" && oneShot.gameBoard[3] !== "" && oneShot.gameBoard[4] !== "" && oneShot.gameBoard[5] !== "" && oneShot.gameBoard[6] !== "" && oneShot.gameBoard[7] !== "" && oneShot.gameBoard[8] !== "") {
+        //tie = true
+        return "it’s a tie!"
+    }
     
 }
 
 function game () {
+
+    let tie
+
     while (player1Score < 1 && player2Score < 1) {
 
         let player1Position = prompt("enter o position")
@@ -71,8 +79,18 @@ function game () {
         playRound()
         console.log("player1score: " + player1Score)
         console.log("player2score: " + player2Score)
-    }
+
+
+        if (oneShot.gameBoard[0] !== "" && oneShot.gameBoard[1] !== "" && oneShot.gameBoard[2] !== "" && oneShot.gameBoard[3] !== "" && oneShot.gameBoard[4] !== "" && oneShot.gameBoard[5] !== "" && oneShot.gameBoard[6] !== "" && oneShot.gameBoard[7] !== "" && oneShot.gameBoard[8] !== "") {
+            tie = true
+            
+        }
+    }  
+
     
+    if (tie === true) {
+        console.log("it’s a tie!") 
+    }
 }
 game()
 
