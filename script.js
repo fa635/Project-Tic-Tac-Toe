@@ -58,10 +58,9 @@ function playRound () {
         ){
         winner = "x"
     }
-    // else if (oneShot.gameBoard[0] !== "" && oneShot.gameBoard[1] !== "" && oneShot.gameBoard[2] !== "" && oneShot.gameBoard[3] !== "" && oneShot.gameBoard[4] !== "" && oneShot.gameBoard[5] !== "" && oneShot.gameBoard[6] !== "" && oneShot.gameBoard[7] !== "" && oneShot.gameBoard[8] !== "") {
-    //     //tie = true
-    //     return "it’s a tie!"
-    // }
+    else if (oneShot.gameBoard[0] !== "" && oneShot.gameBoard[1] !== "" && oneShot.gameBoard[2] !== "" && oneShot.gameBoard[3] !== "" && oneShot.gameBoard[4] !== "" && oneShot.gameBoard[5] !== "" && oneShot.gameBoard[6] !== "" && oneShot.gameBoard[7] !== "" && oneShot.gameBoard[8] !== "") {
+    winner = "tie"
+    }
     
 }
 
@@ -149,6 +148,15 @@ function markSquare(e) {
 
                     div.textContent = "o won"
                 }
+                else if (winner === "tie") {
+                    const body = document.querySelector("body")
+                    const div = document.createElement("div")
+                    body.appendChild(div)
+
+                    e.target.textContent = content
+
+                    div.textContent = "it’s a tie!"
+                }
             }
 
             
@@ -176,11 +184,13 @@ function markSquare(e) {
 
                     div.textContent = "x won"
                 }
+                
             }
             
         }
 
     }
+    
     
     if (winner === "") {
         if (oneShot.gameBoard[this.dataset.index] === content) {
@@ -188,6 +198,46 @@ function markSquare(e) {
         }
     }
     
+
+    // if (winner === "tie") {
+
+    //     const body = document.querySelector("body")
+    //     const div = document.createElement("div")
+    //     body.appendChild(div)
+
+    //     if (oneShot.gameBoard[this.dataset.index] === "") {
+    //         e.target.textContent = content
+    //     }
+        
+
+    //     div.textContent = "it’s a tie!"
+
+    // }
+
+    
+
+
+    // if (winner === "tie") {
+
+    //     const body = document.querySelector("body")
+    //     const div = document.createElement("div")
+    //     body.appendChild(div)
+
+    //     e.target.textContent = content
+
+    //     div.textContent = "it’s a tie!"
+
+    // }
+
+    // if (oneShot.gameBoard[0] !== "" && oneShot.gameBoard[1] !== "" && oneShot.gameBoard[2] !== "" && oneShot.gameBoard[3] !== "" && oneShot.gameBoard[4] !== "" && oneShot.gameBoard[5] !== "" && oneShot.gameBoard[6] !== "" && oneShot.gameBoard[7] !== "" && oneShot.gameBoard[8] !== "") {
+
+    //     const body = document.querySelector("body")
+    //     const div = document.createElement("div")
+    //     body.appendChild(div)
+
+    //     div.textContent = "it’s a tie!"
+
+    // }
 }
 
 
