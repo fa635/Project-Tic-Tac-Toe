@@ -1,7 +1,6 @@
 
 
-let player1Score = 0
-let player2Score = 0
+let winner = ""
 
 
 const oneShot = (function () {
@@ -29,7 +28,7 @@ function playRound () {
     const addToScorePlayer1 = () => player1Score++;
     const addToScorePlayer2 = () => player2Score++;
     
-    let tie
+    // let tie
 
 
     if (
@@ -42,7 +41,8 @@ function playRound () {
         (oneShot.gameBoard[0] === "o" && oneShot.gameBoard[4] === "o" && oneShot.gameBoard[8] === "o") ||
         (oneShot.gameBoard[2] === "o" && oneShot.gameBoard[4] === "o" && oneShot.gameBoard[6] === "o") 
         ){
-        addToScorePlayer1()
+        winner = "o"
+        
         
         
     }
@@ -56,12 +56,12 @@ function playRound () {
         (oneShot.gameBoard[0] === "x" && oneShot.gameBoard[4] === "x" && oneShot.gameBoard[8] === "x") ||
         (oneShot.gameBoard[2] === "x" && oneShot.gameBoard[4] === "x" && oneShot.gameBoard[6] === "x") 
         ){
-        addToScorePlayer2()
+        winner = "x"
     }
-    else if (oneShot.gameBoard[0] !== "" && oneShot.gameBoard[1] !== "" && oneShot.gameBoard[2] !== "" && oneShot.gameBoard[3] !== "" && oneShot.gameBoard[4] !== "" && oneShot.gameBoard[5] !== "" && oneShot.gameBoard[6] !== "" && oneShot.gameBoard[7] !== "" && oneShot.gameBoard[8] !== "") {
-        //tie = true
-        return "it’s a tie!"
-    }
+    // else if (oneShot.gameBoard[0] !== "" && oneShot.gameBoard[1] !== "" && oneShot.gameBoard[2] !== "" && oneShot.gameBoard[3] !== "" && oneShot.gameBoard[4] !== "" && oneShot.gameBoard[5] !== "" && oneShot.gameBoard[6] !== "" && oneShot.gameBoard[7] !== "" && oneShot.gameBoard[8] !== "") {
+    //     //tie = true
+    //     return "it’s a tie!"
+    // }
     
 }
 
@@ -92,9 +92,103 @@ function game () {
         console.log("it’s a tie!") 
     }
 }
-game()
+//game()
 
 
 // console.log(getGameData(0,3))
 // console.log(getGameData(1,8))
 // console.log(getGameData(2,5))
+
+
+
+
+
+const squares = document.querySelectorAll(".square")
+squares.forEach(function(div) {
+    div.addEventListener("click", markSquare)
+})
+
+
+divIndex = 0
+
+squares.forEach(function(div) {
+    div.setAttribute("data-index", divIndex)
+    divIndex++
+})
+
+let content = ""
+
+function markSquare(e) {
+
+
+    if (content === "") {
+
+        content = "o"
+        oneShot.gameBoard[this.dataset.index] = "o"
+   
+    }
+    else if (content === "x") { 
+        
+        if (oneShot.gameBoard[this.dataset.index] === "") {
+
+            if (winner === "") {
+
+                content = "o"
+
+                oneShot.gameBoard[this.dataset.index] = "o"
+
+                playRound()
+
+                if (winner === "o") {
+
+                    const body = document.querySelector("body")
+                    const div = document.createElement("div")
+                    body.appendChild(div)
+
+                    e.target.textContent = content
+
+                    div.textContent = "o won"
+                }
+            }
+
+            
+        }
+
+    }
+    else if (content === "o") { 
+        
+        if (oneShot.gameBoard[this.dataset.index] === "") {
+
+            if (winner === "") {
+                content = "x"
+
+                oneShot.gameBoard[this.dataset.index] = "x"
+
+                playRound()
+
+                if (winner === "x") {
+
+                    const body = document.querySelector("body")
+                    const div = document.createElement("div")
+                    body.appendChild(div)
+
+                    e.target.textContent = content
+
+                    div.textContent = "x won"
+                }
+            }
+            
+        }
+
+    }
+    
+    if (winner === "") {
+        if (oneShot.gameBoard[this.dataset.index] === content) {
+        e.target.textContent = content
+        }
+    }
+    
+}
+
+
+
