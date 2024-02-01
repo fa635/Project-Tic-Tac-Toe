@@ -171,5 +171,11 @@ function restartGame () {
         div.textContent = ""
     })
 
+    const div = document.querySelector("button + div")
+    if(div !== null) {
+        
+        div.remove()
+    }
+    
 }
 
