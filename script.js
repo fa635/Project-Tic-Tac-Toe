@@ -241,4 +241,21 @@ function markSquare(e) {
 }
 
 
+const restart = document.querySelector("button")
+restart.addEventListener("click", restartGame)
+
+
+function restartGame () {
+    oneShot.gameBoard[0] = "", oneShot.gameBoard[1] = "", oneShot.gameBoard[2] = "", 
+    oneShot.gameBoard[3] = "", oneShot.gameBoard[4] = "", oneShot.gameBoard[5] = "", 
+    oneShot.gameBoard[6] = "", oneShot.gameBoard[7] = "", oneShot.gameBoard[8] = ""
+    winner = ""
+    content = ""
+
+
+    squares.forEach(function(div) {
+        div.textContent = ""
+    })
+
+}
 
